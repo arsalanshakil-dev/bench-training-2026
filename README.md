@@ -121,15 +121,15 @@ Aim for 2 minutes per answer. If you go blank — talk through your thinking. Th
 
 Before your first session, confirm all of this:
 
-- [ ] GitHub repo is **public** and named `bench-training-2026`
-- [ ] All 7 daily folders exist with code pushed
+- [*] GitHub repo is **public** and named `bench-training-2026`
+- [*] All 7 daily folders exist with code pushed
 - [ ] Each day has a `README.md` with actual reflection (not copy-paste)
 - [ ] Commit messages are descriptive
 - [ ] Day 7 mini project runs end-to-end without errors
 - [ ] Watched at least: Mosh (2hr), Corey Schafer OOP, 3Blue1Brown NN series
 - [ ] Attempted all 20 mock interview questions
-- [ ] Python 3.10+ installed, pip and virtualenv working
-- [ ] VS Code or PyCharm configured
+- [*] Python 3.10+ installed, pip and virtualenv working
+- [*] VS Code or PyCharm configured
 - [ ] GitHub link shared in **#bench-training** on Slack
 
 ---
