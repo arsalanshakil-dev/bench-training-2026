@@ -123,14 +123,14 @@ Before your first session, confirm all of this:
 
 - [x] GitHub repo is **public** and named `bench-training-2026`
 - [x] All 7 daily folders exist with code pushed
-- [ ] Each day has a `README.md` with actual reflection (not copy-paste)
-- [ ] Commit messages are descriptive
+- [x] Each day has a `README.md` with actual reflection (not copy-paste)
+- [x] Commit messages are descriptive
 - [ ] Day 7 mini project runs end-to-end without errors
 - [ ] Watched at least: Mosh (2hr), Corey Schafer OOP, 3Blue1Brown NN series
 - [ ] Attempted all 20 mock interview questions
 - [x] Python 3.10+ installed, pip and virtualenv working
 - [x] VS Code or PyCharm configured
-- [ ] GitHub link shared in **#bench-training** on Slack
+- [x] GitHub link shared in **#bench-training** on Slack
 
 ---
 
