@@ -120,3 +120,30 @@ Callers using the module API receive the raw exception to handle as they see fit
 All data is live from [restcountries.com](https://restcountries.com) v3.1.
 Population and area figures reflect whatever the API returns at call time.
 GDP per capita is not available from this API.
+
+## Mermaid
+
+```mermaid
+flowchart TD
+    A[User runs CLI: python countries.py <command>] --> B[Parse CLI args (main)]
+    B --> C{Command type?}
+    C -->|get| D[get_country(name)]
+    C -->|region| E[get_region(region_name)]
+    C -->|compare| F[compare_countries(c1, c2)]
+    
+    D --> G[Make HTTP request via REST Countries API]
+    E --> G
+    F --> G
+    
+    G --> H[Receive JSON response]
+    H --> I[_parse_country() → clean dict]
+    
+    I --> J{Output type?}
+    J -->|Single country| K[_print_country()]
+    J -->|Region| L[_print_region()]
+    J -->|Comparison| M[_print_comparison()]
+    
+    K --> N[Display output in terminal]
+    L --> N
+    M --> N
+```
