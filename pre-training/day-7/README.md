@@ -125,25 +125,45 @@ GDP per capita is not available from this API.
 
 ```mermaid
 flowchart TD
-    A[User runs CLI: python countries.py <command>] --> B[Parse CLI args (main)]
-    B --> C{Command type?}
-    C -->|get| D[get_country(name)]
-    C -->|region| E[get_region(region_name)]
-    C -->|compare| F[compare_countries(c1, c2)]
-    
-    D --> G[Make HTTP request via REST Countries API]
-    E --> G
-    F --> G
-    
-    G --> H[Receive JSON response]
-    H --> I[_parse_country() → clean dict]
-    
-    I --> J{Output type?}
-    J -->|Single country| K[_print_country()]
-    J -->|Region| L[_print_region()]
-    J -->|Comparison| M[_print_comparison()]
-    
-    K --> N[Display output in terminal]
-    L --> N
-    M --> N
+    %% CLI start
+    A["User runs CLI: python countries.py <command>"] --> B["Parse CLI args in main()"]
+
+    %% Command selection
+    B --> C{"Command type?"}
+    C -->|get| D["Call get_country(name)"]
+    C -->|region| E["Call get_region(region_name)"]
+    C -->|compare| F["Call compare_countries(c1, c2)"]
+
+    %% get_country flow
+    D --> D1["URL encode country name"]
+    D1 --> D2["Call _fetch(url)"]
+    D2 --> D3{"HTTP Response?"}
+    D3 -->|200 OK| D4["_parse_country(raw JSON)"]
+    D3 -->|404 Not Found| DX["Raise ValueError: 'Not found'"]
+    D3 -->|Network error| DY["Raise RuntimeError"]
+
+    D4 --> DZ["_print_country(parsed dict)"]
+    DZ --> O["Display output in terminal"]
+    DX --> O
+    DY --> O
+
+    %% get_region flow
+    E --> E1["URL encode region name"]
+    E1 --> E2["Call _fetch(url)"]
+    E2 --> E3{"HTTP Response?"}
+    E3 -->|200 OK| E4["_parse_country for each country in list"]
+    E3 -->|404 Not Found| EX["Raise ValueError: 'Not found'"]
+    E3 -->|Network error| EY["Raise RuntimeError"]
+
+    E4 --> E5["_print_region(list of parsed dicts)"]
+    E5 --> O
+    EX --> O
+    EY --> O
+
+    %% compare_countries flow
+    F --> F1["Call get_country(c1) → c1 dict"]
+    F1 --> F2["Call get_country(c2) → c2 dict"]
+    F2 --> F3["Prepare comparison rows (metrics: population, area, languages, etc.)"]
+    F3 --> F4["_print_comparison(comparison dict)"]
+    F4 --> O
 ```
